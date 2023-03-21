@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modul2/View/home.dart';
 import 'package:flutter_modul2/View/register.dart';
 import 'package:flutter_modul2/component/form_component.dart';
 
@@ -61,9 +62,9 @@ class _LoginViewState extends State<LoginView> {
                         if (_formKey.currentState!.validate()) {
                           // ScaffoldMessenger.of(context).showSnackBar(
                           // const SnackBar(content: Text('Processing Data')));
-                          Map<String, dynamic> formData = {};
-                          formData['username'] = usernameController.text;
-                          formData['password'] = passwordController.text;
+                          // Map<String, dynamic> formData = {};
+                          // formData['username'] = usernameController.text;
+                          // formData['password'] = passwordController.text;
                           Navigator.push(
                               context,
                               MaterialPageRoute(
