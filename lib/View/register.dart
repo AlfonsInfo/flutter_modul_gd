@@ -11,15 +11,14 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   //*untuk validasi harus menggunakan GlobalKey
-  final _formKey = GlobalKey<FormState>();
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController notelpController = TextEditingController();
+    final _formKey = GlobalKey<FormState>();
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    TextEditingController notelpController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: Form(
@@ -28,10 +27,10 @@ class _RegisterViewState extends State<RegisterView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               inputForm(
-                (p0)  {
+                (p0)  {   
                   if(p0 == null || p0.isEmpty)
                   {
-                     return 'Username Tidak Boleh Kosong';
+                    return 'Username Tidak Boleh Kosong';
                   }
                   if(p0.toLowerCase() == 'anjing'){
                     return 'Tidak Boleh Menggunakan kata kasar';
@@ -60,7 +59,7 @@ class _RegisterViewState extends State<RegisterView> {
                   helperTxt: "ucup@gmail.com",
                   iconData: Icons.email),
               inputForm(
-                  //*validasi password lebih detail menggunakan regex
+                  //*Pola validasi lebih detail bisa menggunakan regex
                   ((p0){
                     if(p0 == null || p0.isEmpty)
                     {
@@ -79,7 +78,8 @@ class _RegisterViewState extends State<RegisterView> {
                   password: true),
               inputForm(
                   ((p0){
-                    // final RegExp regex = RegExp(r'^\0?[1-9]\d{1,14}$');
+                    //* untuk menglihat contoh penggunaan regex, uncomment baris dibawah yang dicomment
+                    // final RegExp regex = RegExp(r'^\0?[1-9]\d{1,14}$'); 
                     if(p0 == null || p0.isEmpty)
                     {
                       return 'Nomor Telepon tidak boleh kosong';
@@ -102,13 +102,14 @@ class _RegisterViewState extends State<RegisterView> {
                         Map<String,dynamic> formData = {};
                         formData['username']  = usernameController.text;
                         formData['password']  = passwordController.text;
+                        //* Navigator.push(context, MaterialPageRoute(builder: (BuildContext buildContext) =>  LoginView(data: formData ,)) );
                         Navigator.push(context, MaterialPageRoute(builder: (_) =>  LoginView(data: formData ,)) );
                     }
                   },
                   child: const Text('Register'))
             ],
           ),
-        ),
+        ),  
       ),
     );
   }

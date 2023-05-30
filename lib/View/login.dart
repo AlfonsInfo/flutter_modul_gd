@@ -4,7 +4,10 @@ import 'package:flutter_modul2/View/register.dart';
 import 'package:flutter_modul2/component/form_component.dart';
 
 class LoginView extends StatefulWidget {
+  //*  Map data bersifat nullable, karena ketika aplikasi dijalankan(dipanggil dari main, tidak ada data yang dibawa)
+  //* data memiliki nilai ketika registrasi berhasil dilakukan
   final Map? data;
+  //* Agar Map data bisa bersifat nullable, pada constructor dibungkus dengan kurung { } agar bersifat opsional
   const LoginView({super.key, this.data});
 
   @override
@@ -16,11 +19,11 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
+    //* TextEditingController
     TextEditingController usernameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
+    //* widget mengacu pada instance/ objek LoginView
     Map? dataForm = widget.data;
-    bool validasiUsername = false;
-    bool validasiPassword = false;
     return Scaffold(
       body: SafeArea(
         child: Form(
@@ -28,60 +31,79 @@ class _LoginViewState extends State<LoginView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              //* Username
               inputForm((p0) {
-                if (p0! == dataForm?['username']) {
-                  validasiUsername = true;
-                  return null;
+                if (p0 == null || p0.isEmpty) {
+                  return "username tidak boleh kosong";
                 }
-                return "Username tidak ditemukan / salah";
+                return null;
               },
                   controller: usernameController,
                   hintTxt: "Username",
                   helperTxt: "Inputkan User yang telah didaftar",
                   iconData: Icons.person),
+              //* Password
               inputForm((p0) {
-                if(validasiUsername == false){
-                  return "Password salah";
+                if(p0 == null || p0.isEmpty){
+                  return "password kosong";
                 }
-                if (p0! == dataForm?['password']) {
-                  validasiPassword = true;
-                  return null;
-                } 
-                return "Password salah";
+                return null;
               },
                   password: true,
                   controller: passwordController,
                   hintTxt: "Password",
                   helperTxt: "Inputkan Password",
                   iconData: Icons.password),
+              //* Baris yang berisi tombol login dan tombol mengarah kehalaman register
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  //*tombol login
                   ElevatedButton(
+                      //* Fungsi yang dijalankan saat tombol ditekan.
                       onPressed: () {
+                        //* Cek statenya sudah valid atau belum valid
                         if (_formKey.currentState!.validate()) {
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          // const SnackBar(content: Text('Processing Data')));
-                          // Map<String, dynamic> formData = {};
-                          // formData['username'] = usernameController.text;
-                          // formData['password'] = passwordController.text;
+                          //* jika sudah valid, cek username dan password yang diinputkan pada form telah sesuai dengan data yang dibawah
+                          //* dari halaman register atau belum
+                          if(dataForm!['username'] == usernameController.text && dataForm['password'] == passwordController.text )
+                          {
+                            //* Jika sesuai navigasi ke halaman Home
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (_) =>const HomeView()));
+                          }else{
+                            //* Jika belum tampilkan Alert dialog
+                                  showDialog(context: context, builder:(_)=>AlertDialog(
+                                    title: const Text('Password Salah'),
+                                    //* isi Alert Dialog
+                                    content: TextButton(
+                                      //* pushRegister(context) fungsi pada baris 118-124 untuk meminimalkan nested code
+                                      onPressed: () =>pushRegister(context),
+                                      child: const Text('Daftar Disini !!')),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                                        child: const Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context, 'OK'),
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  ),);
+                          }
                         }
                       },
                       child: const Text('Login')),
+                  //* tombol ke halaman register
                   TextButton(
                       onPressed: () {
                           Map<String, dynamic> formData = {};
                           formData['username'] = usernameController.text;
                           formData['password'] = passwordController.text;
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => const RegisterView(),
-                                  ),);
+                          pushRegister(context);
                       },
                       child: const Text('Belum punya akun ?')),
                 ],
@@ -91,5 +113,13 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
+  }
+
+  void pushRegister(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => const RegisterView(),
+            ),);
   }
 }
