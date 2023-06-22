@@ -10,8 +10,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      home: LoginView(),
+    return   const MaterialApp(
+      home:  LoginView(),
     );
   }
 }

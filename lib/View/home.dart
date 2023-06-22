@@ -12,7 +12,6 @@ class _HomeViewState extends State<HomeView> {
 
   //* selectedIndex berkaitan dengan index halaman pada bottomNavigasi
   int _selectedIndex = 0;
-
   //* fungsi yang nantinya akan dijalankan setiap menekan menu pada navbar
   void _onItemTapped(int index) {
     //* setState berkaitan dengan fungsi untuk menampilkan perubahan kondisi & dalam banyak kasus akan menggunakan ini 

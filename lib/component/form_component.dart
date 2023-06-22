@@ -23,5 +23,4 @@ required String hintTxt,required String helperTxt,required IconData iconData, bo
     );
   }
 
-  //* Misalnya elevated button bisa dipindahkan disini dan digunakan untuk tombol-tombol di view login,register
-  //* agar lebih reusable
+  

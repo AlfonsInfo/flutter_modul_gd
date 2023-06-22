@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+//* Sesuai dengan nama project Anda ,  awalnya akan error pada home,register,form component karena belum dibuat
 import 'package:flutter_modul2/View/home.dart';
 import 'package:flutter_modul2/View/register.dart';
 import 'package:flutter_modul2/component/form_component.dart';
 
 class LoginView extends StatefulWidget {
-  //*  Map data bersifat nullable, karena ketika aplikasi dijalankan(dipanggil dari main, tidak ada data yang dibawa)
+  //* Variable map data dibuat bersifat nullable, karena ketika aplikasi dijalankan(dipanggil dari main, tidak ada data yang dibawa)
   //* data memiliki nilai ketika registrasi berhasil dilakukan
   final Map? data;
   //* Agar Map data bisa bersifat nullable, pada constructor dibungkus dengan kurung { } agar bersifat opsional
@@ -22,7 +23,7 @@ class _LoginViewState extends State<LoginView> {
     //* TextEditingController
     TextEditingController usernameController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-    //* widget mengacu pada instance/ objek LoginView
+    //* widget mengacu pada instance/objek LoginView
     Map? dataForm = widget.data;
     return Scaffold(
       body: SafeArea(
@@ -114,12 +115,7 @@ class _LoginViewState extends State<LoginView> {
       ),
     );
   }
-
   void pushRegister(BuildContext context) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) => const RegisterView(),
-            ),);
+    Navigator.push(context,MaterialPageRoute(builder: (_) => const RegisterView(),),);
   }
 }

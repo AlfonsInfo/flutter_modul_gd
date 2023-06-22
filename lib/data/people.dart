@@ -1,4 +1,4 @@
-//KelasPerson
+//* 1. Kelas Person
 class Person{
   final String name ;
   final String phone ;
@@ -6,7 +6,8 @@ class Person{
   const Person(this.name,this.phone,this.picture);
 }
 
- //Objek dari Person
+ //* 2. Variabel List dengan nama people yang memiliki data bertipe object Person, yang merupakan
+ //* hasil mapping data list pada baris 14 kebawah
 final List<Person> people = 
       _people.map((e) => Person(e['name'] as String,e['phone'] as String,e['picture'] as String)).toList(growable: false); 
 

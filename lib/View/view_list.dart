@@ -25,7 +25,6 @@ class ListNamaView extends StatelessWidget {
 
 class NarrowLayout extends StatelessWidget {
   const NarrowLayout({super.key});
-  
   @override
   Widget build(BuildContext context) {
     return PeopleList(
@@ -33,7 +32,6 @@ class NarrowLayout extends StatelessWidget {
               builder: (context) => Scaffold(
                 appBar: AppBar(),
                 body: PersonDetail(person),
-
               ),
             ),),);
   }
