@@ -12,10 +12,10 @@ class ListNamaView extends StatelessWidget {
       ),
       body: LayoutBuilder(builder: (context, constraints) {
         if(constraints.maxWidth > 600){ 
-          //* Layar Lebar
+          //* Landscape
           return const WideLayout();
         }else{
-          //* Layar Horizontal
+          //* Portrait
           return const NarrowLayout();
         }
       }),
@@ -72,6 +72,7 @@ class _WideLayoutState extends State<WideLayout> {
   }
 }
 
+
 class PeopleList extends StatelessWidget {
   final void Function(Person) onPersonTap;
   const PeopleList({super.key, required this.onPersonTap});
@@ -79,9 +80,9 @@ class PeopleList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(children: [
-      //kok kalo pake { } error ?
       for (var person in people)
         ListTile(
+          
             leading: Image.network(person.picture)  ,
             // leading: const HtmlElementView(viewType: "<img>")  ,
             title: Text(person.name),

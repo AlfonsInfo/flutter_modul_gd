@@ -41,7 +41,7 @@ class _RegisterViewState extends State<RegisterView> {
                   hintTxt: "Username",
                   helperTxt: "Ucup Surucup",
                   iconData: Icons.person),
-
+          
               inputForm(
                   ((p0){
                     if(p0 == null || p0.isEmpty)
@@ -98,6 +98,7 @@ class _RegisterViewState extends State<RegisterView> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       // ScaffoldMessenger.of(context).showSnackBar(
+                      print("OnPressed");
                       // const SnackBar(content: Text('Processing Data')));
                         Map<String,dynamic> formData = {};
                         formData['username']  = usernameController.text;
